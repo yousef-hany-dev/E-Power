@@ -11,6 +11,7 @@
     <title>Epower</title>
     <link rel="icon" href="imgs/banner-compressed_Webpifier.webp" type="image/png" />
     <link rel="stylesheet" href="style/pd.css" />
+    <link rel="stylesheet" href="style/cart.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -57,17 +58,18 @@
                 <a href="login.html">
                     Sign In<i class="bi bi-box-arrow-left"></i></a>
             </li>
-            <li>
-                <a href="#" id="open-language">the language<i class="bi bi-translate"></i></a>
-            </li>
+            
             <li>
                 <a href="blog.html">blog<i class="bi bi-chat-left-text"></i></a>
             </li>
             <li>
-                <a href="About.html">About<i class="bi bi-info-circle"></i></a>
+                <a href="About.html">About us<i class="bi bi-info-circle"></i></a>
             </li>
             <li>
                 <a href="shop.html">shop<i class="bi bi-shop"></i></a>
+            </li>
+            <li>
+                <a href="favorites.html">Favorites<i class="bi bi-heart text-danger"></i></a>
             </li>
         </ul>
     </div>
@@ -154,7 +156,7 @@
                         <div class="quantity-section">
                             <input type="number" value="1" min="1" class="qty-input">
                         </div>
-                        <a href="#">ADD TO CARD</a>
+                        <a href="#" class="add-to-cart-btn" data-id="p1_main" data-name="2020 Apple MacBook Pro with Apple M1 Chip" data-price="1699.00" data-image="imgs/pd1-compressed_Webpifier.webp">ADD TO CART</a>
                         <a href="#" class="buy">BUY NOW</a>
                     </div>
                     <div class="payments">
@@ -202,7 +204,10 @@
     </footer>
 
 
+    
     <script src="js/sidebar.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 
 </html>

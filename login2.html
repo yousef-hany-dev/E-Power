@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style/cart.css" />
 </head>
 
 <body>
@@ -58,9 +59,7 @@
                 <a href="login.html">
                     Sign In<i class="bi bi-box-arrow-left"></i></a>
             </li>
-            <li>
-                <a href="#" id="open-language">the language<i class="bi bi-translate"></i></a>
-            </li>
+            
             <li>
                 <a href="blog.html">blog<i class="bi bi-chat-left-text"></i></a>
             </li>
@@ -69,6 +68,9 @@
             </li>
             <li>
                 <a href="shop.html">shop<i class="bi bi-shop"></i></a>
+            </li>
+            <li>
+                <a href="favorites.html">Favorites<i class="bi bi-heart text-danger"></i></a>
             </li>
         </ul>
     </div>
@@ -87,6 +89,14 @@
                 <label>
                     Email Address
                     <input type="email" name="email" placeholder="example@gmail.com" required autocomplete="email">
+                </label>
+                <label>
+                    Phone Number
+                    <input type="tel" name="phone" placeholder="0123456789" required>
+                </label>
+                <label>
+                    Address
+                    <input type="text" name="address" placeholder="e.g. 123 Main St, City" required>
                 </label>
 
                 <label>
@@ -108,15 +118,15 @@
                 <button type="submit" class="btn primary">Sign Up</button>
 
                 <div class="divider">
-                    <span>Or you can register with</span>
+                    Or you can register with
                 </div>
 
                 <div class="social-login">
-                    <button type="button" class="btn google">
+                    <button type="button" class="btn google" onclick="alert(window.t('coming_soon'))">
                         <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
                         Sign In via Google
                     </button>
-                    <button type="button" class="btn facebook">
+                    <button type="button" class="btn facebook" onclick="alert(window.t('coming_soon'))">
                         <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook">
                         Sign In via Facebook
                     </button>
@@ -175,7 +185,42 @@
             <p>&copy; 2025 Epower. All rights reserved.</p>
         </div>
     </footer>
+    
     <script src="js/sidebar.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = this.name.value.trim();
+            const email = this.email.value.trim();
+            const phone = this.phone.value.trim();
+            const address = this.address.value.trim();
+            const passwords = this.querySelectorAll('input[type="password"]');
+            const password = passwords[0].value;
+            const confirmPassword = passwords[1].value;
+            const messageEl = document.getElementById('message');
+
+            if (password !== confirmPassword) {
+                messageEl.style.color = 'red';
+                messageEl.textContent = 'Passwords do not match.';
+                return;
+            }
+
+            const result = window.EpowerAuth.registerUser(name, email, phone, address, password);
+            if (result.success) {
+                messageEl.style.color = 'green';
+                messageEl.textContent = 'Registration successful! Redirecting...';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            } else {
+                messageEl.style.color = 'red';
+                messageEl.textContent = result.message;
+            }
+        });
+    </script>
 </body>
 
 </html>
