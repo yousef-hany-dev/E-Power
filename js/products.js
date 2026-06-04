@@ -188,6 +188,28 @@ function renderProducts() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Check for URL category parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const catParam = urlParams.get('category');
+  if (catParam) {
+    // Select desktop radio
+    const radioToSelect = document.querySelector(`input[name="type"][value="${catParam}"]`);
+    if (radioToSelect) {
+      radioToSelect.checked = true;
+    }
+    // Update mobile select if present
+    window.mobileFilters = window.mobileFilters || {};
+    window.mobileFilters.category = catParam;
+    
+    const mobileCatSelect = document.getElementById('mobile-category-select');
+    if (mobileCatSelect) {
+      const selectedDiv = mobileCatSelect.querySelector('.selected');
+      if (selectedDiv) {
+        selectedDiv.textContent = catParam;
+      }
+    }
+  }
+
   // Initial Render
   renderProducts();
 
